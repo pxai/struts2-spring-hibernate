@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+ <!-- Mapping configuration details between Customer class and customer table -->
+<hibernate-mapping package="info.pello.maven.hibernate">
+ 
+    <class name="Sale" table="sale">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="description" column="description" />
+        <property name="saledate" column="saledate" />
+        <property name="idseller" column="idseller" insert="false" update="false" />
+        <many-to-one name="seller" class="info.pello.maven.hibernate.Seller" fetch="select">
+            <column name="idseller" not-null="true" />
+        </many-to-one>
+
+    </class>
+ 
+</hibernate-mapping>

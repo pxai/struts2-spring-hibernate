@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+<!-- We instantiate two javamons -->
+<bean id="javamon1" class="info.pello.maven.spring.Javamon.Javamon">
+	<constructor-arg value="Pikachu" /> 
+</bean>
+
+<bean id="javamon2" class="info.pello.maven.spring.Javamon.Javamon">
+	<constructor-arg value="Bulbasur" /> 
+</bean>
+
+<!-- 
+We create a combat autowiring previous javamon by name -
+Combat class has two attributes called javamon1 and javamon2
+With autowiring they will be set automagically
+-->	
+<bean id="combat" class="info.pello.maven.spring.Javamon.Combat" 
+	autowire="byName" >
+</bean>
+
+
+</beans>

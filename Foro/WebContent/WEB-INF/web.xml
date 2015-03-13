@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Foro</display-name>
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description>Servlet que comprueba si el login es correcto</description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>info.pello.servlets.foro.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Servlet que comprueba si el login es correcto</description>
+    <display-name>Alta</display-name>
+    <servlet-name>Alta</servlet-name>
+    <servlet-class>info.pello.servlets.foro.AltaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Alta</servlet-name>
+    <url-pattern>/Alta</url-pattern>
+    <url-pattern>/alta</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <description></description>
+    <display-name>Principal</display-name>
+    <servlet-name>Principal</servlet-name>
+    <servlet-class>info.pello.servlets.foro.PrincipalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Principal</servlet-name>
+    <url-pattern>/Principal</url-pattern>
+    <url-pattern>/principal</url-pattern>
+  </servlet-mapping> 
+  
+    <servlet>
+    <description></description>
+    <display-name>Hilo</display-name>
+    <servlet-name>Hilo</servlet-name>
+    <servlet-class>info.pello.servlets.foro.HiloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hilo</servlet-name>
+    <url-pattern>/Hilo</url-pattern>
+    <url-pattern>/hilo</url-pattern>
+  </servlet-mapping>
+  
+  <resource-ref>
+    <description>Conexión a BBDD</description>
+    <res-ref-name>jdbc/foro</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+
+</web-app>

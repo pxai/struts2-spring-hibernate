@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+ <!-- Mapping configuration details between Customer class and customer table -->
+<hibernate-mapping package="info.pello.maven.hibernate.HibernateSamples">
+ 
+    <class name="Insurance" table="insurance">
+        <id name="idcar" type="java.lang.Integer">
+            <column name="idcar" />
+            <generator class="foreign">
+                <param name="property">car</param>
+            </generator>
+        </id>
+        <one-to-one name="car" class="info.pello.maven.hibernate.HibernateSamples.Car"
+            constrained="true"></one-to-one>
+            
+        <property name="company" column="company" />
+        <property name="type" column="type"/>
+        <property name="cost" column="cost"/>
+    </class>
+ 
+</hibernate-mapping>

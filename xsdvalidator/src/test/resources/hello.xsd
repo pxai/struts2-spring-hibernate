@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+hello.xsd a very simple XSD sample with just one elements
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:element name="greet" type="xs:string" />
+</xs:schema>

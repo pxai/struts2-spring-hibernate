@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+<!-- To enable autowiring through annotations -->
+<!-- Don't forget to add context-related xsd lines above -->
+<context:annotation-config />
+
+<bean id="match" class="info.pello.spring.football.Match">
+</bean>
+
+<bean id="team1" class="info.pello.spring.football.Team">
+	<qualifier value="osasuna" /> <!-- Used in autowiring with qualifier  -->
+	<property name="name" value="Osasuna" />
+	<!-- This is the way to wire a Hashtable -->
+	<property name="players">
+		<map>
+			<entry key="24" value-ref="player1" />
+			<entry key="1" value-ref="player2" />
+		</map>
+	</property>
+</bean>
+
+<bean id="team2" class="info.pello.spring.football.Team">
+	<qualifier value="erreala" />
+	<property name="homeStadium" ref="home1" />
+	<property name="name" value="Real Sociedad" />
+	<property name="players">
+		<map>
+			<entry key="4" value-ref="player3" />
+			<entry key="17" value-ref="player4" />
+		</map>
+	</property>	
+</bean>
+
+<bean id="home1" class="info.pello.spring.football.Home">
+	<qualifier value="sadar" />
+	<property name="name" value="Sadar" />
+</bean>
+
+
+<bean id="referee" class="info.pello.spring.football.Referee">
+	<qualifier value="undiano" />
+	<property name="name" value="Undiano Mallenco" />
+</bean>
+
+<bean id="assistant1" class="info.pello.spring.football.Referee">
+	<qualifier value="rafa" />
+	<property name="name" value="Rafa Guerrero" />
+</bean>
+
+<bean id="assistant2" class="info.pello.spring.football.Referee">
+	<qualifier value="fermin" />
+	<property name="name" value="Fermín en del Banderín" />
+</bean>
+
+<bean id="assistant3" class="info.pello.spring.football.Referee">
+	<qualifier value="chicho" />
+	<property name="name" value="Chicho Terremoto" />
+</bean>
+
+
+<bean id="player1" class="info.pello.spring.football.Player">
+	<property name="name" value="Ilarra" />
+	<property name="number" value="24" />
+	<property name="position" value="Midfielder" />
+</bean>
+<bean id="player2" class="info.pello.spring.football.Player">
+	<property name="name" value="Casillas" />
+	<property name="number" value="1" />
+	<property name="position" value="Keeper" />
+</bean>
+<bean id="player3" class="info.pello.spring.football.Player">
+	<property name="name" value="Pepe" />
+	<property name="number" value="4" />
+	<property name="position" value="Defender" />
+</bean>
+<bean id="player4" class="info.pello.spring.football.Player">
+	<property name="name" value="Azpilicueta" />
+	<property name="number" value="17" />
+	<property name="position" value="Fullback" />
+</bean>
+
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+ <!-- Mapping configuration details between Customer class and customer table -->
+<hibernate-mapping package="info.pello.maven.hibernate.HibernateSamples">
+ 
+    <class name="Car" table="car">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="registration" column="registration" />
+        <property name="model" column="model"/>
+       <one-to-one name="insurance" class="info.pello.maven.hibernate.HibernateSamples.Insurance"
+            cascade="save-update"></one-to-one>
+    </class>
+ 
+</hibernate-mapping>

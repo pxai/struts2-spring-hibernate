@@ -1,0 +1,39 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+   <!-- Con esto le decimos que estamos en modo desarrollo -->
+   <constant name="struts.devMode" value="true" />
+   
+   <!-- Le indicamos el fichero de internacionalización GLOBAL -->
+   <constant name="struts.custom.i18n.resources" value="globals" />
+   
+   <!-- Una constante que indica que si retocamos este fichero
+        los cambios se apliquen al vuelo -->
+   <constant name="struts.configuration.xml.reload" value="true" />
+
+
+	<!-- A partir de aquí empezamos a definir acciones dentro de un paquete 
+	     si no extendemos de otros paquetes debemos hacerlo de struts-default -->
+   <package name="info.pello.struts.internacionalizacion" namespace="/" extends="struts-default">
+
+		<!-- Acción por defecto -->
+    	<default-action-ref name="index" />
+    	<!-- Si alguien solicita index, le mandamos a la jsp -->
+    	<action name="index">
+            <result>/index.jsp</result>
+        </action>
+	
+
+
+		<!-- Definición de una acción http://localhost/app/hola -->
+		<action name="formulario" class="info.pello.struts.internacionalizacion.Formulario">
+	   		<!-- result name="error">/index.jsp</result -->
+   			<result name="success">/formulario.jsp</result>
+   			<result name="error">/formulario.jsp</result>
+   			<result name="input">/formulario.jsp</result>
+		</action>
+		
+   </package>
+</struts>

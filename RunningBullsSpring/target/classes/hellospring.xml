@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+<!--  
+	We declare 6 beans for the bulls
+	Their properties will be set with setter functions.
+	To use de p: prefix we must include xmlns:p="http://www.springframework.org/schema/p"  
+-->
+<!-- We set fixed values to properties  -->
+<bean id="bull1" class="info.pello.runningbulls.Bull"
+	p:name="SpringBull_1" p:weight="500" p:speed="3" />
+<bean id="bull2" class="info.pello.runningbulls.Bull"
+	p:name="SpringBull_2" p:weight="550" p:speed="2" />
+<bean id="bull3" class="info.pello.runningbulls.Bull"
+	p:name="SpringBull_3" p:weight="670" p:speed="4" />
+<!-- Now using SpEL sintax we set random values to properties -->
+<bean id="bull4" class="info.pello.runningbulls.Bull"
+	p:name="SpringBull_4" p:weight="#{new java.util.Random().nextInt(500) + 200}" p:speed="#{new java.util.Random().nextInt(6) + 1}"  />
+<bean id="bull5" class="info.pello.runningbulls.Bull"
+	p:name="SpringBull_5" p:weight="#{new java.util.Random().nextInt(500) + 200}" p:speed="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="bull6" class="info.pello.runningbulls.Bull"
+	p:name="SpringBull_6" p:weight="#{new java.util.Random().nextInt(500) + 200}" p:speed="#{new java.util.Random().nextInt(6) + 1}" />
+
+<!-- We create HumanCrowd bean setting values through constructor -->
+<bean id="humanCrowd" class="info.pello.runningbulls.HumanCrowd">
+	<constructor-arg name="totalRunners" value="#{new java.util.Random().nextInt(100) + 10}" />
+</bean>
+
+	
+<bean id="runningbulls" class="info.pello.runningbulls.RunningOfTheBulls">
+	<!-- We inject the bulls using setBulls() -->
+	<property name="bulls">
+		<list>		
+			<ref bean="bull1" />
+			<ref bean="bull2" />
+			<ref bean="bull3" />
+			<ref bean="bull4" />
+			<ref bean="bull5" />
+			<ref bean="bull6" />
+		</list>
+	</property> 
+	<property name="humanRunners" ref="humanCrowd" />
+</bean>
+
+<!-- We create the journalist -->
+<bean id="journalist" class="info.pello.runningbulls.Journalist" />
+<!-- 
+We add AOP 
+Don't forget to include in header:
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+-->
+
+<aop:config>
+	<aop:aspect ref="journalist">
+		<aop:pointcut id="running"
+			expression="execution(* *.run(..))" /> 
+		<aop:after pointcut-ref="running"
+			method="reportRunning"/>
+	</aop:aspect>
+</aop:config>
+
+</beans>

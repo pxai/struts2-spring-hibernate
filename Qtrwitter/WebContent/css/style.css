@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+html, body {
+	font-family: arial, verdana, sans;
+	font-size: 10pt;
+	background-color: #0e29c9;
+}
+
+#container {
+	width: 800px;
+	margin: 0 auto 0 auto;
+	background-color: white;
+}
+
+.tuit {
+	margin: 10px 2px 20px 2px;
+}
+.tuit .text {
+	font-size: 14pt;
+}
+
+.tuitinfo {
+	color: gray;
+	font-size: 9pt;
+	padding-left: 100px;
+}

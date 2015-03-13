@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xsi:schemaLocation="http://activemq.apache.org/schema/core
+	http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
+	http://www.springframework.org/schema/jms
+	http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<!-- Bean for connection with mq -->
+<bean id="connectionFactory"
+	class="org.apache.activemq.spring.ActiveMQConnectionFactory">
+	<property name="brokerURL" value="tcp://localhost:61616"/>
+</bean>
+
+<!-- alternate way to do the same using amq tags -->
+<!--amq:connectionFactory id="connectionFactory"
+brokerURL="tcp://localhost:61616"/ -->
+
+<!-- Now we declare a queue -->
+<bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
+	<constructor-arg value="order.queue"/>
+</bean>
+<!-- Alternate way -->
+<!--  <amq:queue id="queue" physicalName="order.queue" /> -->
+
+<!-- We could also create a topic queue -->
+<!-- <bean id="topic" class="org.apache.activemq.command.ActiveMQTopic">
+<constructor-arg value="order.topic"/>
+</bean>
+-->
+<!-- Alternate: <amq:topic id="topic" physicalName="order.topic" />
+ -->
+
+<!-- JmsTemplate used by Spring to interact with a MQ --> 
+<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+	<property name="connectionFactory" ref="connectionFactory" />
+</bean>
+ 
+  <!--context:component-scan 
+      base-package="info.pello.spring.messagequeue">
+  </context:component-scan --> 
+  
+  <!-- Message sender bean -->
+  <bean id="messageSender" class="info.pello.spring.messagequeue.MessageSender">
+  	<constructor-arg name="name" value="Sender" />
+  	<property name="jmsTemplate" ref="jmsTemplate" />
+	<property name="queueName" value="order.queue" />
+  </bean>
+  
+  <!-- Message receiver bean -->
+  <bean id="messageReceiver" class="info.pello.spring.messagequeue.MessageReceiver">
+	<constructor-arg name="name" value="Receiver" />
+	<property name="jmsTemplate" ref="jmsTemplate" />
+	<property name="queueName" value="order.queue" />
+  </bean>
+  
+</beans>
+

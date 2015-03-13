@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+html, body {
+	font-family: arial, verdana, sans;
+	font-size: 10pt;
+	background-color: #000;
+}
+
+
+#container {
+	width: 800px;
+	margin: 0 auto 0 auto;
+	background-color: white;
+}
+
+.file {
+	margin: 10px 2px 20px 2px;
+}
+.file .text {
+	font-size: 14pt;
+}
+
+.fileinfo {
+	color: gray;
+	font-size: 9pt;
+	padding-left: 100px;
+}
+
+#newfilediv {
+	display:none;
+	visibility: hidden;
+}

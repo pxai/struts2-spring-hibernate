@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+ <!-- Mapping configuration details between Shipment class and shipment table -->
+<hibernate-mapping package="info.pello.eugene.model">
+ 
+    <class name="Assignment" table="assignment">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name"/>
+        <property name="description" column="description"/>
+        <property name="since" column="since" />
+        <property name="deadline" column="deadline" />
+        <property name="test" column="test" />
+        <property name="idUser" column="iduser" />
+        <property name="idGroup" column="idgroup" />
+    </class>
+ 
+</hibernate-mapping>

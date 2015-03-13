@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+ <!-- Mapping configuration details for self joining table -->
+<hibernate-mapping package="info.pello.maven.hibernate.HibernateSamples">
+ 
+    <class name="Department" table="department">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" />
+        <property name="description" column="description"/>
+        <property name="mainDepartmentId" type="int" update="false"
+            insert="false" column="main_department" length="10"/>
+    <many-to-one name="mainDepartment" class="info.pello.maven.hibernate.HibernateSamples.Department" column="main_department"
+            not-null="false"/>
+    <set name="departments" table="department" lazy="false" cascade="all-delete-orphan"
+            inverse="false">
+              <key column="main_department"/>
+              <one-to-many class="info.pello.maven.hibernate.HibernateSamples.Department" />
+     </set>
+    </class>
+ 
+</hibernate-mapping>

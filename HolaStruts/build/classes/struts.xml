@@ -1,0 +1,43 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+   <!-- Con esto le decimos que estamos en modo desarrollo -->
+   <constant name="struts.devMode" value="true" />
+   
+   <!-- Una constante que indica que si retocamos este fichero
+        los cambios se apliquen al vuelo -->
+   <constant name="struts.configuration.xml.reload" value="true" />
+
+
+	<!-- A partir de aquí empezamos a definir acciones dentro de un paquete 
+	     si no extendemos de otros paquetes debemos hacerlo de struts-default -->
+   <package name="info.pello.struts.hola" namespace="/" extends="struts-default">
+
+		<!-- Acción por defecto -->
+    	<default-action-ref name="index" />
+    	<!-- Si alguien solicita index, le mandamos a la jsp -->
+    	<action name="index">
+            <result>/index.jsp</result>
+        </action>
+	
+
+		<!-- Resultado por defecto en caso de error -->
+	    <!-- global-results>
+            <result name="error">/error.jsp</result>
+        </global-results -->
+        
+		<!-- Resultado por defecto en caso de EXCEPCIoN -->
+        <!-- global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error" />
+        </global-exception-mappings -->
+        
+		<!-- Definición de una acción http://localhost/app/hola -->
+		<action name="hola" class="info.pello.struts.hola.HolaMundo">
+	   		<result name="error">/holamundo_error.jsp</result>
+   			<result name="success">/holamundo_ok.jsp</result>
+		</action>
+
+   </package>
+</struts>

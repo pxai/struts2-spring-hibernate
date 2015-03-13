@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="example" namespace="/example" extends="default">
+
+        <action name="HelloWorld" class="example.HelloWorld">
+            <result>/example/HelloWorld.jsp</result>
+        </action>
+
+        <action name="Login_*" method="{1}" class="example.Login">
+            <result name="input">/example/Login.jsp</result>
+            <result type="redirectAction">Menu</result>
+        </action>
+
+        <action name="*" class="example.ExampleSupport">
+            <result>/example/{1}.jsp</result>
+        </action>
+
+        <!-- Add actions here -->
+    </package>
+    
+    <package name="info.pello.struts.sesion" namespace="/" extends="default">
+        <!-- Explicado aquí http://struts.apache.org/2.x/docs/interceptors.html -->
+        <!--  Definimos el interceptor aquí -->
+   		<interceptors>
+       		<interceptor name="interceptorLogin" class="info.pello.struts.sesion.InterceptorLogin"/>
+       		<interceptor name="interceptorLog" class="info.pello.struts.sesion.InterceptorPorMisLogs"/>
+       		<interceptor-stack name="misInterceptores">
+				<interceptor-ref name="interceptorLog" />
+				<interceptor-ref name="interceptorLogin" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+   		</interceptors>
+   		
+        <action name="hola" class="info.pello.struts.sesion.Hola">
+            <interceptor-ref name="misInterceptores" />
+            <result name="sesionIncorrecta">login.jsp</result>
+            <result name="success">hola.jsp</result>
+            <result name="error">hola.jsp</result>
+            </action>
+
+        <action name="login" class="info.pello.struts.sesion.Login">
+            <!-- y aplicamos el interceptor -->
+            <result name="success">/login.jsp</result>
+            <result name="input">login.jsp</result>
+            <result name="error">login.jsp</result>
+            </action>
+        
+        <!-- Add actions here -->
+    </package>
+</struts>

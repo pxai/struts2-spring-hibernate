@@ -1,0 +1,32 @@
+
+Esta aplicación de foro es una mierd.. perdón quiero decir
+una defecación.
+
+
+MEJORAS PENDIENTES
+-------------------
+
+- ¡No hay validación alguna de datos!
+- ¡No hay control alguno de la sesión! Se puede entrar sin validarse.
+- El nombre de datasource está metido en el código y debiera
+estar metido en el fichero de configuración de la aplicación..
+- Debiera crearse una clase aparte para todo el tema de acceso a datos.
+- Dentro de los JSP hay demasiado código, o se hace con clases o con
+etiquetas especiales.
+- los JSP repiten la cabecera una y otra vez, si queremos cambiar algo
+común hay que hacerlo en todos!!
+
+
+OTRAS MEJORAS
+--------------
+
+Mejoras en funcionalidades:
+- No permite subir avatar de usuario ni tener un perfil
+- No tiene enlaces para volver a principal o cerrar sesión
+- No se paginan los resultados.
+- Una vez posteado no te lleva hasta el post recién creado
+
+Mejoras en estilo
+- Hay mezcla de castellano e inglés en nombres de variales, métodos...
+- Se podrían separar en paquetes apartes los Servlets y las clases Mensaje, Usuario, etc..
+- Hablando de estilo, no hay hojas de estilo CSS y el interfaz es espartano.

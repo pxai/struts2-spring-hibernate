@@ -1,0 +1,11 @@
+C:\Program Files (x86)\Apache Software Foundation\Tomcat 7.0\conf
+METE ESTO EN EL FICHERO context.xml
+DENTRO DE LA ETIQUETA <CONTEXT>
+
+Si tu BBDD no se llama users, 
+cambia el nombre
+
+      <Resource name="miconexion" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://localhost:3306/users"/>

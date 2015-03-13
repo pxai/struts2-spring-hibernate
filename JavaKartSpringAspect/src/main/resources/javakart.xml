@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                                                http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                                                http://www.springframework.org/schema/aop
+                                                http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+
+<!--  
+	4 Karts for the Race
+-->
+<!-- Now using SpEL sintax we set random values to properties -->
+<bean id="kart1" class="info.pello.javakart.Kart"
+        p:name="SringKart_1" p:speed="6" p:acceleration="6" p:grip="6"  />
+<bean id="kart2" class="info.pello.javakart.Kart"
+        p:name="SringKart_2" p:speed="7" p:acceleration="5" p:grip="6"  />
+<bean id="kart3" class="info.pello.javakart.Kart"
+        p:name="SringKart_3" p:speed="5" p:acceleration="6" p:grip="7"  />
+<bean id="kart4" class="info.pello.javakart.Kart"
+        p:name="SringKart_4" p:speed="8" p:acceleration="5" p:grip="5"  />
+
+<!-- The circuit -->
+<bean id="circuit" class="info.pello.javakart.Circuit">
+        <constructor-arg name="name" value="Los Arcos" />
+        <constructor-arg name="distance" value="#{new java.util.Random().nextInt(100) + 100}" />
+</bean>
+
+        
+<!-- The race  -->
+<bean id="race" class="info.pello.javakart.Race">
+        <!-- We inject the bulls using setBulls() -->
+        <property name="name" value="GP Spring" />
+        <property name="karts">
+                <list>          
+                        <ref bean="kart1" />
+                        <ref bean="kart2" />
+                        <ref bean="kart3" />
+                        <ref bean="kart4" />
+                </list>
+        </property> 
+        <property name="circuit" ref="circuit" />
+
+</bean>
+
+<bean id="monitoringKart" class="info.pello.javakart.MonitoringKart"/>
+<bean id="monitoringCircuit" class="info.pello.javakart.MonitoringCircuit"/>
+
+<aop:aspectj-autoproxy>
+  <aop:include name="monitoringKart"/>
+  <aop:include name="monitoringCircuit"/>
+</aop:aspectj-autoproxy>
+
+</beans>

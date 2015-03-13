@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+ <class name="info.pello.struts2.Equipo" table="equipo">
+	 <id name="id" column="id" >
+	 	<generator class="increment"/>
+	 </id>
+	 <property name="nombre" column="nombre" />
+	  <set name="jugadores" table="jugador"
+                inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idequipo" not-null="true" />
+            </key>
+            <one-to-many class="info.pello.struts2.Jugador" />
+        </set>
+ </class>
+</hibernate-mapping>

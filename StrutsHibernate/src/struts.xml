@@ -1,0 +1,37 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="default" extends="hibernate-default">
+		
+		<action name="guardarOActualizarJugador" method="guardarOActualizar" class="info.pello.struts2.JugadorAction">
+			<result name="success" type="redirect">listarJugador</result>
+		</action>
+		<action name="listarJugador" method="listar" class="info.pello.struts2.JugadorAction">
+			<result name="success">/jugador.jsp</result>
+		</action>
+		<action name="editarJugador" method="editar" class="info.pello.struts2.JugadorAction">
+			<result name="success">/jugador.jsp</result>
+		</action>
+		<action name="eliminarJugador" method="eliminar" class="info.pello.struts2.JugadorAction">
+			<result name="success" type="redirect">listarJugador</result>
+		</action>
+		<action name="buscarJugador" method="buscar" class="info.pello.struts2.JugadorAction">
+			<result name="success">/jugador.jsp</result>
+		</action>
+				
+		<action name="guardarOActualizarEquipo" method="guardarOActualizar" class="info.pello.struts2.EquipoAction">
+			<result name="success" type="redirect">listarEquipo</result>
+		</action>
+		<action name="listarEquipo" method="listar" class="info.pello.struts2.EquipoAction">
+			<result name="success">/equipo.jsp</result>
+		</action>
+		<action name="editarEquipo" method="editar" class="info.pello.struts2.EquipoAction">
+			<result name="success">/equipo.jsp</result>
+		</action>
+		<action name="eliminarEquipo" method="eliminar" class="info.pello.struts2.EquipoAction">
+			<result name="success" type="redirect">listarEquipo</result>
+		</action>
+	</package>
+</struts>

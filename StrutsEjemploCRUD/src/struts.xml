@@ -1,0 +1,71 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="default" extends="hibernate-default">
+		<action name="saveOrUpdateUser" method="saveOrUpdate" class="com.vaannila.web.UserAction">
+			<result name="success" type="redirect">listUser</result>
+		</action>
+		<action name="listUser" method="list" class="com.vaannila.web.UserAction">
+			<result name="success">/register.jsp</result>
+		</action>
+		<action name="editUser" method="edit" class="com.vaannila.web.UserAction">
+			<result name="success">/register.jsp</result>
+		</action>
+		<action name="deleteUser" method="delete" class="com.vaannila.web.UserAction">
+			<result name="success" type="redirect">listUser</result>
+		</action>
+		<action name="guardarOActualizarTarea" method="guardarOActualizar" class="com.vaannila.web.TareaAction">
+			<result name="success" type="redirect">listarTarea</result>
+		</action>
+		<action name="listarTarea" method="listar" class="com.vaannila.web.TareaAction">
+			<result name="success">/tarea.jsp</result>
+		</action>
+		<action name="editarTarea" method="editar" class="com.vaannila.web.TareaAction">
+			<result name="success">/tarea.jsp</result>
+		</action>
+		<action name="eliminarTarea" method="eliminar" class="com.vaannila.web.TareaAction">
+			<result name="success" type="redirect">listarTarea</result>
+		</action>
+		
+		<action name="guardarOActualizarTipo" method="guardarOActualizar" class="com.vaannila.web.TipoAction">
+			<result name="success" type="redirect">listarTipo</result>
+		</action>
+		<action name="listarTipo" method="listar" class="com.vaannila.web.TipoAction">
+			<result name="success">/tipo.jsp</result>
+		</action>
+		<action name="editarTipo" method="editar" class="com.vaannila.web.TipoAction">
+			<result name="success">/tipo.jsp</result>
+		</action>
+		<action name="eliminarTipo" method="eliminar" class="com.vaannila.web.TipoAction">
+			<result name="success" type="redirect">listarTipo</result>
+		</action>
+		
+		<action name="guardarOActualizarJugador" method="guardarOActualizar" class="info.pello.struts2.JugadorAction">
+			<result name="success" type="redirect">listarJugador</result>
+		</action>
+		<action name="listarJugador" method="listar" class="info.pello.struts2.JugadorAction">
+			<result name="success">/jugador.jsp</result>
+		</action>
+		<action name="editarJugador" method="editar" class="info.pello.struts2.JugadorAction">
+			<result name="success">/jugador.jsp</result>
+		</action>
+		<action name="eliminarJugador" method="eliminar" class="info.pello.struts2.JugadorAction">
+			<result name="success" type="redirect">listarJugador</result>
+		</action>
+		
+		<action name="guardarOActualizarEquipo" method="guardarOActualizar" class="info.pello.struts2.EquipoAction">
+			<result name="success" type="redirect">listarEquipo</result>
+		</action>
+		<action name="listarEquipo" method="listar" class="info.pello.struts2.EquipoAction">
+			<result name="success">/equipo.jsp</result>
+		</action>
+		<action name="editarEquipo" method="editar" class="info.pello.struts2.EquipoAction">
+			<result name="success">/equipo.jsp</result>
+		</action>
+		<action name="eliminarEquipo" method="eliminar" class="info.pello.struts2.EquipoAction">
+			<result name="success" type="redirect">listarEquipo</result>
+		</action>
+	</package>
+</struts>

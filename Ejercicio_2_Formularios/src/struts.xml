@@ -1,0 +1,58 @@
+<!DOCTYPE struts PUBLIC
+
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
+	<constant name="struts.devMode" value="true" />
+
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+	<package name="info.pello.struts.hola" extends="struts-default"
+		namespace="/">
+
+		<!-- Definición de una acción http://localhost/app/hola -->
+
+		<action name="hola" class="info.pello.struts.hola.HolaMundo">
+
+			<result name="error">
+				/holamundo_error.jsp
+			</result>
+
+			<result name="success">
+				/holamundo_ok.jsp
+			</result>
+		</action>
+
+		<action name="saludo" class="info.pello.struts.hola.Saludo">
+			<result name="success">
+				/saludo.jsp
+			</result>
+			<result name="error">
+				/error.jsp
+			</result>
+
+
+		</action>
+		
+		<action name="precio" class="info.pello.struts.hola.Precio">
+			<result name="success">
+				/precio.jsp
+			</result>
+			<result name="error">
+				/precio.jsp
+			</result>
+			<result name="input">
+				/precio.jsp
+			</result>
+
+
+		</action>
+		
+	
+	</package>
+
+</struts>

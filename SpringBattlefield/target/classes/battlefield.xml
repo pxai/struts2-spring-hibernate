@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	        xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+                                                http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<!-- To enable autowiring through annotations -->
+<!-- Don't forget to add context-related xsd lines above -->
+<context:annotation-config />
+
+<bean id="soldier1" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier1" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier2" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier2" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier3" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier3" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier4" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier4" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier5" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier5" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier6" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier6" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier7" class="org.cuatrovientos.battlefield.Soldier" >
+	<property name="name" value="Alejandro" />
+	<property name="attack" value="#{new java.util.Random().nextInt(6) + 1}" />
+	<qualifier value="Alejandro" />
+</bean>
+
+<bean id="soldier8" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier8" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier9" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier9" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier10" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier10" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier11" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier11" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier12" class="org.cuatrovientos.battlefield.Soldier" p:name="soldier12" p:attack="#{new java.util.Random().nextInt(6) + 1}" />
+<bean id="soldier13" class="org.cuatrovientos.battlefield.Soldier" >
+	<property name="name" value="Dario" />
+	<property name="attack" value="#{new java.util.Random().nextInt(6) + 1}" />
+	<qualifier value="Dario" />
+</bean>
+
+<bean id="tank" class="org.cuatrovientos.battlefield.Tank" p:name="panzer" p:range="20" >
+	<qualifier value="panzerTank" />
+</bean>
+
+
+<bean id="squad1" class="org.cuatrovientos.battlefield.Squad">
+	<qualifier value="macedonian" />
+	<property name="name" value="Macedonian" />
+	<property name="squadLeader" ref="soldier7" />
+	<property name="soldiers">
+		<list>
+			<ref bean="soldier1" />
+			<ref bean="soldier2" />
+			<ref bean="soldier3" />
+			<ref bean="soldier4" />
+			<ref bean="soldier5" />
+			<ref bean="soldier6" />
+		</list>
+	</property>
+</bean>
+
+<bean id="squad2" class="org.cuatrovientos.battlefield.Squad">
+	<qualifier value="persian" />
+	<property name="name" value="Persian" />
+		<property name="soldiers">
+		<list>
+			<ref bean="soldier8" />
+			<ref bean="soldier9" />
+			<ref bean="soldier10" />
+			<ref bean="soldier11" />
+			<ref bean="soldier12" />
+		</list>
+	</property>
+</bean>
+
+
+<bean id="battlefield" class="org.cuatrovientos.battlefield.Battlefield" p:name="Issos battle" />
+
+
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+ <class name="info.pello.struts2.Jugador" table="jugador">
+	 <id name="id" column="id" >
+	 	<generator class="increment"/>
+	 </id>
+	 <property name="nombre" column="nombre" />
+	 <property name="puesto" column="puesto" />
+	 <property name="dorsal" column="dorsal" />
+	 <property name="idequipo" column="idequipo" />
+	 <many-to-one name="equipo" class="info.pello.struts2.Equipo" insert="false" update="false"  fetch="select">
+            <column name="idequipo" not-null="true" />
+     </many-to-one>
+ </class>
+</hibernate-mapping>
